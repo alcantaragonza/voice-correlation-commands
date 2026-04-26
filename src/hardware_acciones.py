@@ -5,15 +5,12 @@ import os
 import webbrowser
 import time
 
-# Diccionario que mapea cada comando reconocido a su accion
-# Cuando P2 detecte uno de estos nombres, se ejecuta lo que dice aca
-ACCIONES = {
-    "word":    {"tipo": "app",     "valor": "winword.exe"},
-    "excel":   {"tipo": "app",     "valor": "excel.exe"},
-    "meso":    {"tipo": "url",     "valor": "https://www.umes.edu.gt/"}, 
-    "lampara": {"tipo": "arduino", "valor": "L"},
-    "motor":   {"tipo": "arduino", "valor": "M"},
-}
+# Importo las configuraciones de P1
+from config import ACTIONS_DICT
+
+# Configuracion de la comunicacion serial
+BAUD_RATE   = 9600   # tiene que ser igual al del sketch
+TIMEOUT_SEG = 10     # cuanto espero al pulsador antes de cancelar
 
 # Configuracion de la comunicacion serial
 BAUD_RATE   = 9600   # tiene que ser igual al del sketch
@@ -90,11 +87,11 @@ def abrir_url(url):
 
 # Funcion principal: recibe el comando que reconocio P2 y ejecuta lo que toque
 def ejecutar_accion(nombre_comando, arduino):
-    if nombre_comando not in ACCIONES:
+    if nombre_comando not in ACTIONS_DICT:
         print(f"[ERROR] El comando '{nombre_comando}' no se encuentra en el diccionario.")
         return
     
-    accion = ACCIONES[nombre_comando]
+    accion = ACTIONS_DICT[nombre_comando]
     
     if accion["tipo"] == "app":
         abrir_aplicacion(accion["valor"])
