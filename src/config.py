@@ -1,13 +1,33 @@
-# Configuraciones globales del proyecto
-SAMPLE_RATE = 44100  # La frecuencia que usaste en Audacity
-DURATION = 1.5       # Duración sugerida para las grabaciones del usuario
-CHANNELS = 1         # Siempre Mono
+# Configuraciones globales
+SAMPLE_RATE = 44100
+CHANNELS = 1
 
-# Diccionario de comandos y sus rutas
-COMMANDS = {
-    "word": "patterns/word.wav",
-    "excel": "patterns/excel.wav",
-    "meso": "patterns/meso.wav",
-    "lampara": "patterns/lampara.wav",
-    "motor": "patterns/motor.wav"
+# Mapeo maestro de comandos y acciones
+# Estructura: "palabra": ["ruta_audio", "tipo_accion", "valor_accion"]
+ACTIONS_DICT = {
+    "word": {
+        "path": "patterns/word.wav",
+        "type": "software",
+        "action": "start winword"  # Comando para Windows
+    },
+    "excel": {
+        "path": "patterns/excel.wav",
+        "type": "software",
+        "action": "start excel"
+    },
+    "meso": {
+        "path": "patterns/meso.wav",
+        "type": "url",
+        "action": "https://www.umes.edu.gt"
+    },
+    "lampara": {
+        "path": "patterns/lampara.wav",
+        "type": "hardware",
+        "action": "L"  # Carácter que el Arduino recibirá por Serial
+    },
+    "motor": {
+        "path": "patterns/motor.wav",
+        "type": "hardware",
+        "action": "M"
+    }
 }
