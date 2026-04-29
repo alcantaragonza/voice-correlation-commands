@@ -116,9 +116,14 @@ El comando cuyo `max|R[k]|` sea mayor es el reconocido. Todos los audios se **no
 ***
 
 ## Universidad Mesoamericana — Quetzaltenango
-**Curso:** Teoría de Sistemas  
+
+**Curso:** Teoría de Sistemas
 **Entrega:** 30 de abril de 2026
-**Miembros del Equipo**:
-- Brayan Alexander de León Pereira
-- Bryan Alexander Pérez Santos
-- Andrés Fernando González Alcántara
+
+**Miembros del Equipo:**
+
+| # | Nombre |
+|---|--------|
+| 1 | Brayan Alexander de León Pereira |
+| 2 | Bryan Alexander Pérez Santos |
+| 3 | Andrés Fernando González Alcántara |
