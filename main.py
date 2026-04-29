@@ -1,4 +1,3 @@
-# main.py  (va en la raíz del proyecto, al mismo nivel que /src y /patterns)
 import sys
 import os
 
