@@ -12,11 +12,6 @@ from config import ACTIONS_DICT
 BAUD_RATE   = 9600   # tiene que ser igual al del sketch
 TIMEOUT_SEG = 10     # cuanto espero al pulsador antes de cancelar
 
-# Configuracion de la comunicacion serial
-BAUD_RATE   = 9600   # tiene que ser igual al del sketch
-TIMEOUT_SEG = 10     # cuanto espero al pulsador antes de cancelar
-
-
 # Busca el puerto donde esta conectado el Arduino
 def detectar_puerto_arduino():
     puertos = serial.tools.list_ports.comports()
@@ -73,10 +68,10 @@ def activar_accion_fisica(arduino, señal):
 
 
 # Abre una aplicacion del sistema
-def abrir_aplicacion(nombre_app):
-    print(f"[ACCION] Abriendo aplicacion: {nombre_app}")
-    os.startfile(nombre_app)   # esto es para Windows
-    # Si fuera Linux seria: os.system(f"xdg-open {nombre_app}")
+def abrir_aplicacion(comando):
+    print(f"[ACCION] Abriendo aplicacion: {comando}")
+    os.system(comando)   # esto es para Windows
+    # Si fuera Linux seria: os.system(f"xdg-open {comando}")
 
 
 # Abre una URL en el navegador por defecto
@@ -93,11 +88,11 @@ def ejecutar_accion(nombre_comando, arduino):
     
     accion = ACTIONS_DICT[nombre_comando]
     
-    if accion["tipo"] == "app":
-        abrir_aplicacion(accion["valor"])
-    elif accion["tipo"] == "url":
-        abrir_url(accion["valor"])
-    elif accion["tipo"] == "arduino":
-        activar_accion_fisica(arduino, accion["valor"])
+    if accion["type"] == "software":
+        abrir_aplicacion(accion["action"])
+    elif accion["type"] == "url":
+        abrir_url(accion["action"])
+    elif accion["type"] == "hardware":
+        activar_accion_fisica(arduino, accion["action"])
     else:
         print(f"[ERROR] Tipo de accion desconocido: {accion['tipo']}")
