@@ -5,20 +5,12 @@ import os
 import webbrowser
 import time
 
-# Diccionario que mapea cada comando reconocido a su accion
-# Cuando P2 detecte uno de estos nombres, se ejecuta lo que dice aca
-ACCIONES = {
-    "word":    {"tipo": "app",     "valor": "winword.exe"},
-    "excel":   {"tipo": "app",     "valor": "excel.exe"},
-    "meso":    {"tipo": "url",     "valor": "https://www.umes.edu.gt/"}, 
-    "lampara": {"tipo": "arduino", "valor": "L"},
-    "motor":   {"tipo": "arduino", "valor": "M"},
-}
+# Importo las configuraciones de P1
+from config import ACTIONS_DICT
 
 # Configuracion de la comunicacion serial
 BAUD_RATE   = 9600   # tiene que ser igual al del sketch
 TIMEOUT_SEG = 10     # cuanto espero al pulsador antes de cancelar
-
 
 # Busca el puerto donde esta conectado el Arduino
 def detectar_puerto_arduino():
@@ -76,10 +68,10 @@ def activar_accion_fisica(arduino, señal):
 
 
 # Abre una aplicacion del sistema
-def abrir_aplicacion(nombre_app):
-    print(f"[ACCION] Abriendo aplicacion: {nombre_app}")
-    os.startfile(nombre_app)   # esto es para Windows
-    # Si fuera Linux seria: os.system(f"xdg-open {nombre_app}")
+def abrir_aplicacion(comando):
+    print(f"[ACCION] Abriendo aplicacion: {comando}")
+    os.system(comando)   # esto es para Windows
+    # Si fuera Linux seria: os.system(f"xdg-open {comando}")
 
 
 # Abre una URL en el navegador por defecto
@@ -90,17 +82,17 @@ def abrir_url(url):
 
 # Funcion principal: recibe el comando que reconocio P2 y ejecuta lo que toque
 def ejecutar_accion(nombre_comando, arduino):
-    if nombre_comando not in ACCIONES:
+    if nombre_comando not in ACTIONS_DICT:
         print(f"[ERROR] El comando '{nombre_comando}' no se encuentra en el diccionario.")
         return
     
-    accion = ACCIONES[nombre_comando]
+    accion = ACTIONS_DICT[nombre_comando]
     
-    if accion["tipo"] == "app":
-        abrir_aplicacion(accion["valor"])
-    elif accion["tipo"] == "url":
-        abrir_url(accion["valor"])
-    elif accion["tipo"] == "arduino":
-        activar_accion_fisica(arduino, accion["valor"])
+    if accion["type"] == "software":
+        abrir_aplicacion(accion["action"])
+    elif accion["type"] == "url":
+        abrir_url(accion["action"])
+    elif accion["type"] == "hardware":
+        activar_accion_fisica(arduino, accion["action"])
     else:
         print(f"[ERROR] Tipo de accion desconocido: {accion['tipo']}")
