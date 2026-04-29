@@ -20,8 +20,8 @@ def cargar_patrones(comandos_dict):
     Carga todos tus archivos .wav en un diccionario de arreglos NumPy.
     """
     patrones_listos = {}
-    for nombre, ruta in comandos_dict.items():
-        data, sr = sf.read(ruta)
+    for nombre, info in comandos_dict.items():
+        data, sr = sf.read(info["path"])
         # Solo por seguridad, si es estéreo pasamos a mono
         if len(data.shape) > 1: data = data.mean(axis=1)
         patrones_listos[nombre] = limpiar_y_preparar(data, sr)

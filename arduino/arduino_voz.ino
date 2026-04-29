@@ -42,9 +42,9 @@ void loop() {
         }
         //si llega L enciende el motor por 1 segundo
         else if (cmd == 'M') {
-            digitalWrite(PIN_RELE, HIGH);
-            delay(1000);
             digitalWrite(PIN_RELE, LOW);
+            delay(1000);
+            digitalWrite(PIN_RELE, HIGH);
         }
     }
 }
