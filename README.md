@@ -12,4 +12,24 @@ Voice command recognition system using cross-correlation in Python, with hardwar
 Usa `src/preprocessing.py` para cargar los patrones. Los arreglos ya vienen normalizados de -1 a 1. La correlación debe hacerse sobre estos arreglos.
 
 ### Instrucciones para P3 (Integración):
-En `src/config.py` tienes el diccionario de comandos para mapear las acciones (ej: si detecta "meso", abrir URL).
+**Archivos entregados:**
+    - `src/hardware_acciones.py` → comunicación serial con Arduino y ejecución de acciones
+    - `arduino/arduino_voz.ino` → sketch para detectar el pulsador y controlar el rele
+    
+**Hardware requerido:**
+    - Arduino Uno
+    - Pulsador (conectado al pin 2)
+    - Modulo rele de 5V (conectado al pin 7)
+    - Motor o lampara de 12V (conectado al rele)
+    - Cable USB para comunicacion serial
+
+**Funciones disponibles para integrar:**
+    - `conectar_arduino()` → busca y abre el puerto serial
+    - `esperar_pulsador(arduino)` → espera la señal "P" del Arduino
+    - `ejecutar_accion(nombre_comando, arduino)` → ejecuta la accion segun el comando reconocido
+
+**Comandos serial:**
+    - Arduino → PC: envia `"P"` cuando se presiona el pulsador
+    - PC → Arduino: envia `"L"` para lampara o `"M"` para motor
+
+
