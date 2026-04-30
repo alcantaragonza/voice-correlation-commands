@@ -1,11 +1,15 @@
 # voice-correlation-commands
+Voice command recognition system using cross-correlation in Python, with hardware control via Arduino. | Sistema de reconocimiento de comandos de voz mediante correlación cruzada en Python, con control de hardware vía Arduino. 
 
-> Voice command recognition system using cross-correlation in Python, with hardware control via Arduino.
-> Sistema de reconocimiento de comandos de voz mediante correlación cruzada en Python, con control de hardware vía Arduino.
+# Proyecto Reconocimiento de Voz
 
-***
+## Información para el Equipo:
+- **P1 (Audio):** Audios listos en `/patterns`.
+- **Frecuencia (FS):** 44100 Hz (Mono).
+- **Librerías necesarias:** `pip install numpy soundfile noisereduce sounddevice`
 
-## ¿Qué hace este proyecto?
+### Instrucciones para P2 (Lógica):
+Usa `src/preprocessing.py` para cargar los patrones. Los arreglos ya vienen normalizados de -1 a 1. La correlación debe hacerse sobre estos arreglos.
 
 Graba la voz del usuario (disparada por un pulsador físico en Arduino), la compara contra 4 patrones de audio pregrabados usando **correlación cruzada discreta** con NumPy, identifica el comando dicho y ejecuta la acción correspondiente — todo sin APIs externas.
 
