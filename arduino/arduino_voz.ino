@@ -40,7 +40,7 @@ void loop() {
             delay(3000);
             digitalWrite(PIN_RELE, LOW);
         }
-        //si llega L enciende el motor por 1 segundo
+        //si llega M enciende el motor por 1 segundo
         else if (cmd == 'M') {
             digitalWrite(PIN_RELE, LOW);
             delay(1000);

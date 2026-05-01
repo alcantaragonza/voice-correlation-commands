@@ -95,4 +95,4 @@ def ejecutar_accion(nombre_comando, arduino):
     elif accion["type"] == "hardware":
         activar_accion_fisica(arduino, accion["action"])
     else:
-        print(f"[ERROR] Tipo de accion desconocido: {accion['tipo']}")
+        print(f"[ERROR] Tipo de accion desconocido: {accion['type']}")

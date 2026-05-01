@@ -4,8 +4,9 @@
 
 import numpy as np
 import sounddevice as sd
+from scipy.signal import resample
 
-from config import SAMPLE_RATE, CHANNELS, ACTIONS_DICT
+from config import SAMPLE_RATE, CHANNELS, ACTIONS_DICT, SAMPLE_RATE_CORRELACION
 from prepocessing import cargar_patrones, limpiar_y_preparar
 
 DURACION_GRABACION = 2.5   # segundos que se graba al usuario
@@ -25,6 +26,12 @@ def igualar_longitud(a, b):
     return a, b
 
 
+def reducir_tasa_muestreo(audio, sr_original, sr_destino):
+    """Reduce muestras antes de correlacionar para mayor velocidad."""
+    num_muestras_nuevo = int(len(audio) * sr_destino / sr_original)
+    return resample(audio, num_muestras_nuevo)
+
+
 def calcular_correlacion(patron, entrada):
     """
     Correlación cruzada entre el patrón pregrabado y la entrada del usuario.
@@ -36,10 +43,12 @@ def calcular_correlacion(patron, entrada):
     Retorna el valor máximo absoluto, que indica el nivel de similitud.
     Un valor más alto = mayor parecido entre las dos señales.
     """
-    p, e = igualar_longitud(patron.copy(), entrada.copy())
+    # Reducir tasa ANTES de igualar longitud
+    p = reducir_tasa_muestreo(patron, SAMPLE_RATE, SAMPLE_RATE_CORRELACION)
+    e = reducir_tasa_muestreo(entrada, SAMPLE_RATE, SAMPLE_RATE_CORRELACION)
+    p, e = igualar_longitud(p.copy(), e.copy())
     correlacion = np.correlate(p, e, mode='full')
     return float(np.max(np.abs(correlacion)))
-
 
 def grabar_entrada_usuario():
     """

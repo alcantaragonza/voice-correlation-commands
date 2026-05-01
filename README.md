@@ -95,6 +95,7 @@ Cargar `arduino/arduino_voz.ino` con el IDE de Arduino antes de ejecutar el scri
 | `soundfile`    | Lectura de archivos `.wav`               |
 | `noisereduce`  | Reducción de ruido espectral             |
 | `pyserial`     | Comunicación Serial con Arduino          |
+| `scipy`        | Resamplear muestras                      |
 
 ***
 
