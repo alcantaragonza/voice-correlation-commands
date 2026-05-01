@@ -1,6 +1,7 @@
 # Configuraciones globales
 SAMPLE_RATE = 44100
 CHANNELS = 1
+SAMPLE_RATE_CORRELACION = 8000
 
 # Mapeo maestro de comandos y acciones
 # Estructura: "palabra": ["ruta_audio", "tipo_accion", "valor_accion"]

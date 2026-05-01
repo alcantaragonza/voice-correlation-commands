@@ -29,6 +29,9 @@ def main():
         print("\n" + "-" * 50)
 
         # Esperar pulsador (o salir si hay timeout)
+        if arduino is None:
+            print("[ERROR] Arduino no disponible. Saliendo.")
+            break
         if not esperar_pulsador(arduino):
             continue
 
