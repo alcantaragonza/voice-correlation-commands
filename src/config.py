@@ -25,10 +25,5 @@ ACTIONS_DICT = {
         "path": "patterns/lampara.wav",
         "type": "hardware",
         "action": "L"  # Carácter que el Arduino recibirá por Serial
-    },
-    "motor": {
-        "path": "patterns/motor.wav",
-        "type": "hardware",
-        "action": "M"
     }
 }
