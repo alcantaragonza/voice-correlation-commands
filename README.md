@@ -127,8 +127,8 @@ El comando cuyo `max|R[k]|` sea mayor es el reconocido. Todos los audios se **no
 
 **Miembros del Equipo:**
 
-| # | Nombre |
-|---|--------|
+| # | Nombre | Carné |
+|---|--------|-------|
 | 1 | Brayan Alexander de León Pereira | 202308112 |
 | 2 | Bryan Alexander Pérez Santos | 202208024 |
 | 3 | Andrés Fernando González Alcántara | 202308061 |
